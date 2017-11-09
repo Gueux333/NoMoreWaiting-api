@@ -14,8 +14,7 @@ let Schema = new mongoose.Schema({
   image: { type: String },        // l'url de l'image
   date: { type: String },         // la date du concert
   lat: { type: String },          // latitude du lieu
-  lng: {type: String },
-  quality: { type: Number}        // Qualite du concert 
+  lng: {type: String }            // longitude du lieu
 });
 
 let Model = mongoose.model('Show', Schema);
@@ -47,8 +46,7 @@ export default {
       image: show.image,
       date: show.date,
       lat: show.lat,
-      lng: show.lng,
-      quality: show.quality
+      lng: show.lng
     });
   },
 
@@ -62,8 +60,7 @@ export default {
       image: show.image,
       date: show.date,
       lat: show.lat,
-      lng: show.lng,
-      quality: show.quality
+      lng: show.lng
     }, {upsert: true}).exec();
   },
 

@@ -1,0 +1,24 @@
+<h1>Place</h1>
+
+<div>
+  <div>name : {{place.name}}</div>
+  <div>description : {{place.description}}</div>
+  <div>lat : {{place.lat}}</div>
+  <div>lng : {{place.lng}}</div>
+  <div>time: {{place.time}}</div>
+  <div>
+    <img src="{{place.image}}" />
+  <div>date : {{place.date}}</div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/places/create" role="button">
+    Add a place
+  </a>
+  <a class="btn btn-secondary" href="/places/update/{{place.id}}" role="button">
+    Update
+  </a>
+  <a class="btn btn-danger" href="/places/delete/{{place.id}}" role="button">
+    Delete
+  </a>
+</div>

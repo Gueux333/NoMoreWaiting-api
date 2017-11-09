@@ -18,6 +18,7 @@ import SeedDbController from "./controllers/SeedDbController";
 import HomeController from "./controllers/HomeController";
 import ShowController from "./controllers/ShowController";
 import BookingController from "./controllers/BookingController";
+import PlaceController from "./controllers/PlaceController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -74,6 +75,14 @@ server.get('/shows/update/:id', ShowController.getUpdateShow);
 server.post('/shows/update/:id', ShowController.postUpdateShow);
 server.get('/shows/delete/:id', ShowController.getDeleteShow);
 
+server.get('/places', PlaceController.getPlaces);
+server.get('/places/id/:id', PlaceController.getPlace);
+server.get('/places/create', PlaceController.getCreatePlace);
+server.post('/places/create', PlaceController.postCreatePlace);
+server.get('/places/update/:id', PlaceController.getUpdatePlace);
+server.post('/places/update/:id', PlaceController.postUpdatePlace);
+server.get('/places/delete/:id', PlaceController.getDeletePlace);
+
 server.get('/bookings', BookingController.getBookings);
 server.get('/bookings/id/:id', BookingController.getBooking);
 server.get('/bookings/create', BookingController.getCreateBooking);
@@ -90,6 +99,12 @@ server.get('/api/shows/id/:id', ShowController.getShowApi);
 server.post('/api/shows/create', ShowController.postCreateShowApi);
 server.post('/api/shows/update/:id', ShowController.postUpdateShowApi);
 server.post('/api/shows/delete/:id', ShowController.postDeleteShowApi);
+
+server.get('/api/places', PlaceController.getPlacesApi);
+server.get('/api/places/id/:id', PlaceController.getPlaceApi);
+server.post('/api/places/create', PlaceController.postCreatePlaceApi);
+server.post('/api/places/update/:id', PlaceController.postUpdatePlaceApi);
+server.post('/api/places/delete/:id', PlaceController.postDeletePlaceApi);
 
 server.get('/api/bookings', BookingController.getBookingsApi);
 server.get('/api/bookings/id/:id', BookingController.getBookingApi);

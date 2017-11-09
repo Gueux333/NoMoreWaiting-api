@@ -31,8 +31,7 @@ const shows = () => {
         image: show.image,
         date: show.date,
         lat: show.lat,
-        lng: show.lng,
-        quality: show.quality
+        lng: show.lng
       }
     }
 
@@ -64,8 +63,7 @@ const show = (_id) => {
       image: data.image,
       date: data.date,
       lat: data.lat,
-      lng: data.lng,
-      quality: data.quality
+      lng: data.lng
     };
     return response;
   });
@@ -126,8 +124,7 @@ export default {
       image: req.body.image,
       date: req.body.date,
       lat: req.body.lat,
-      lng: req.body.lng,
-      quality: req.body.quality
+      lng: req.body.lng
     };
 
     createShow(show)
@@ -159,8 +156,7 @@ export default {
       image: req.body.image,
       date: req.body.date,
       lat: req.body.lat,
-      lng: req.body.lng,
-      quality: req.body.quality
+      lng: req.body.lng
     };
 
     updateShow(req.params.id, show)
@@ -218,8 +214,7 @@ export default {
       image: req.body.image,
       date: req.body.date,
       lat: req.body.lat,
-      lng: req.body.lng,
-      quality: req.body.quality
+      lng: req.body.lng
     };
 
     createShow(show)
@@ -240,7 +235,6 @@ export default {
       price: req.body.price,
       image: req.body.image,
       date: req.body.date,
-      quality: req.body.quality
     };
 
     updateShow(req.params.id, show)

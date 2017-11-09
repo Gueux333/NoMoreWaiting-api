@@ -8,6 +8,6 @@ export default {
 
   // Controller des Apis
   getIndexApi: (req, res) => {
-    res.status(200).send('Hello World');
+    res.status(200).send('hello world');
   },
 };
