@@ -37,8 +37,8 @@ export default {
     return Model.create({
       name: place.name,
       description: place.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: place.lat, 
+      lng: place.lng,
       image: place.image,
       time: place.time
     });
