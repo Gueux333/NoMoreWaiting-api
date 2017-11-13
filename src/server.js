@@ -19,6 +19,7 @@ import HomeController from "./controllers/HomeController";
 import ShowController from "./controllers/ShowController";
 import BookingController from "./controllers/BookingController";
 import PlaceController from "./controllers/PlaceController";
+import SeedDbControllerPlaces from "./controllers/SeedDbController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -63,6 +64,7 @@ mongoose.connect('mongodb://' + process.env.DB_USERNAME + ':' + process.env.DB_P
 // Routes pour initialiser la base
 server.post('/seeddb', SeedDbController.seedDb);
 
+server.post('/seeddb', SeedDbControllerPlaces.seedDb);
 
 // Routes pour les vues
 server.get('/', HomeController.getIndex);
