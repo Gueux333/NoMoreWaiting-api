@@ -48,8 +48,8 @@ export default {
     return Model.findOneAndUpdate({ _id }, {
       name: place.name,
       description: place.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: place.lat, 
+      lng: place.lng,
       image: place.image,
       time: place.time
     }, {upsert: true}).exec();

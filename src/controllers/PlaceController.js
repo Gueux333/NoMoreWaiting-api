@@ -25,8 +25,8 @@ const places = () => {
         id: place._id,
         name: place.name,
         description: place.description,
-        lat: { type: String }, 
-        lng: { type: String },
+        lat: place.lat, 
+        lng: place.lng,
         image: place.image,
         time: place.time
       }
@@ -54,8 +54,8 @@ const place = (_id) => {
       id: data._id,
       name: data.name,
       description: data.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: data.lat, 
+      lng: data.lng,
       image: data.image,
       time: data.time
     };
@@ -112,8 +112,8 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: req.body.lat, 
+      lng: req.body.lng,
       image: req.body.image,
       time: req.body.time
     };
@@ -141,8 +141,8 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: req.body.lat, 
+      lng: req.body.lat,
       image: req.body.image,
       time: req.body.time
     };
@@ -196,8 +196,8 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: req.body.lat, 
+      lng: req.body.lng,
       image: req.body.image,
       time: req.body.time
     };
@@ -215,8 +215,8 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
-      lat: { type: String }, 
-      lng: { type: String },
+      lat: req.body.lat, 
+      lng: req.body.lng,
       image: req.body.image,
       time: req.body.time,
     };
