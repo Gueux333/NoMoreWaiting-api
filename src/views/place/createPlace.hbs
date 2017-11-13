@@ -1,0 +1,39 @@
+<h1>Create Place</h1>
+
+<form action="/places/create" method="post">
+  <div class="form-group">
+    <label for="name">Name*</label>
+    <input class="form-control" type="text" id="name" name="name" placeholder="Nom du concert" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description*</label>
+    <input class="form-control" type="text" id="description" name="description" placeholder="Type de lieu" required>
+  </div>
+
+  <div class="form-group">
+    <label for="lat">Latitude</label>
+    <input class="form-control" type="text" id="lat" name="lat" placeholder="Latitude">
+  </div>
+
+  <div class="form-group">
+    <label for="lng">Longitude</label>
+    <input class="form-control" type="text" id="lng" name="lng" placeholder="Longitude">
+  </div>
+
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input class="form-control" type="text" id="image" name="image" placeholder="Ex: http://lien.vers-l-image.com/img.jpeg">
+  </div>
+
+  <div class="form-group">
+    <label for="time">Time</label>
+    <input class="form-control" type="time" id="time" name="time">
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      Create
+    </button>
+  </div>
+</form>
