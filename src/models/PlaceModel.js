@@ -3,7 +3,7 @@
 import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
-import showSeeds from "../helpers/showSeeds";
+import ShowSeeds from "../helpers/ShowSeeds";
 
 let Schema = new mongoose.Schema({
   name: { type: String },         // le nom du concert
