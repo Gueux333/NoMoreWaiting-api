@@ -157,7 +157,7 @@ export default {
   },
 
   getDeletePlace: (req, res) => {
-    deleteplace(req.params.id)
+    deletePlace(req.params.id)
     .then((data) => {
       res.redirect('/places');
     }, (err) => {

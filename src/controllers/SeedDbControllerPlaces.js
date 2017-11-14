@@ -2,7 +2,7 @@
 import Errors from "../helpers/Errors";
 
 // Récupération du model
-import PlaeModel from "../models/PlaceModel";
+import PlaceModel from "../models/PlaceModel";
 import BookingModel from "../models/BookingModel";
 
 export default {
