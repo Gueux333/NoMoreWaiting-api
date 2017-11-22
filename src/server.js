@@ -6,6 +6,7 @@ import path from "path";
 import favicon from "serve-favicon";
 import mongoose from "mongoose";
 import exphbs from "express-handlebars";
+import moment from "moment";
 
 // Récupération du fichier de configuration qui dépend de l'environnement :
 // - /config/dev.js si vous lancez l'application en local
@@ -20,6 +21,7 @@ import ShowController from "./controllers/ShowController";
 import BookingController from "./controllers/BookingController";
 import PlaceController from "./controllers/PlaceController";
 import SeedDbControllerPlaces from "./controllers/SeedDbController";
+import UserController from "./controllers/UserController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -77,6 +79,12 @@ server.get('/shows/update/:id', ShowController.getUpdateShow);
 server.post('/shows/update/:id', ShowController.postUpdateShow);
 server.get('/shows/delete/:id', ShowController.getDeleteShow);
 
+server.get('/users', UserController.getUsers);
+server.get('/users/id/:id', UserController.getUser);
+server.get('/users/update/:id', UserController.getUpdateUser);
+server.post('/users/update/:id', UserController.postUpdateUser);
+
+
 server.get('/places', PlaceController.getPlaces);
 server.get('/places/id/:id', PlaceController.getPlace);
 server.get('/places/create', PlaceController.getCreatePlace);
@@ -101,6 +109,11 @@ server.get('/api/shows/id/:id', ShowController.getShowApi);
 server.post('/api/shows/create', ShowController.postCreateShowApi);
 server.post('/api/shows/update/:id', ShowController.postUpdateShowApi);
 server.post('/api/shows/delete/:id', ShowController.postDeleteShowApi);
+
+server.get('/api/users', UserController.getUsersApi);
+server.get('/api/users/id/:id', UserController.getUserApi);
+server.post('/api/users/update/:id', UserController.postUpdateUserApi);
+
 
 server.get('/api/places', PlaceController.getPlacesApi);
 server.get('/api/places/id/:id', PlaceController.getPlaceApi);
