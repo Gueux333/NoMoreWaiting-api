@@ -79,11 +79,13 @@ server.get('/shows/update/:id', ShowController.getUpdateShow);
 server.post('/shows/update/:id', ShowController.postUpdateShow);
 server.get('/shows/delete/:id', ShowController.getDeleteShow);
 
-server.get('/users', UserController.getUsers);
-server.get('/users/id/:id', UserController.getUser);
-server.get('/users/update/:id', UserController.getUpdateUser);
-server.post('/users/update/:id', UserController.postUpdateUser);
-
+server.get('/bookings', BookingController.getBookings);
+server.get('/bookings/id/:id', BookingController.getBooking);
+server.get('/bookings/create', BookingController.getCreateBooking);
+server.post('/bookings/create', BookingController.postCreateBooking);
+server.get('/bookings/update/:id', BookingController.getUpdateBooking);
+server.post('/bookings/update/:id', BookingController.postUpdateBooking);
+server.get('/bookings/delete/:id', BookingController.getDeleteBooking);
 
 server.get('/places', PlaceController.getPlaces);
 server.get('/places/id/:id', PlaceController.getPlace);
@@ -93,13 +95,13 @@ server.get('/places/update/:id', PlaceController.getUpdatePlace);
 server.post('/places/update/:id', PlaceController.postUpdatePlace);
 server.get('/places/delete/:id', PlaceController.getDeletePlace);
 
-server.get('/bookings', BookingController.getBookings);
-server.get('/bookings/id/:id', BookingController.getBooking);
-server.get('/bookings/create', BookingController.getCreateBooking);
-server.post('/bookings/create', BookingController.postCreateBooking);
-server.get('/bookings/update/:id', BookingController.getUpdateBooking);
-server.post('/bookings/update/:id', BookingController.postUpdateBooking);
-server.get('/bookings/delete/:id', BookingController.getDeleteBooking);
+server.get('/UserUpdates', UserController.getUserUpdates);
+server.get('/UserUpdates/id/:id', UserController.getUserUpdate);
+server.get('/UserUpdates/create', UserController.getCreateUserUpdate);
+server.post('/UserUpdates/create', UserController.postCreateUserUpdate);
+server.get('/UserUpdates/update/:id', UserController.getUpdateUserUpdate);
+server.post('/UserUpdates/update/:id', UserController.postUpdateUserUpdate);
+server.get('/UserUpdates/delete/:id', UserController.getDeleteUserUpdate);
 
 // Routes pour les APIs
 server.get('/api/', HomeController.getIndexApi);
@@ -110,10 +112,17 @@ server.post('/api/shows/create', ShowController.postCreateShowApi);
 server.post('/api/shows/update/:id', ShowController.postUpdateShowApi);
 server.post('/api/shows/delete/:id', ShowController.postDeleteShowApi);
 
-server.get('/api/users', UserController.getUsersApi);
-server.get('/api/users/id/:id', UserController.getUserApi);
-server.post('/api/users/update/:id', UserController.postUpdateUserApi);
+server.get('/api/bookings', BookingController.getBookingsApi);
+server.get('/api/bookings/id/:id', BookingController.getBookingApi);
+server.post('/api/bookings/create', BookingController.postCreateBookingApi);
+server.post('/api/bookings/update/:id', BookingController.postUpdateBookingApi);
+server.post('/api/bookings/delete/:id', BookingController.postDeleteBookingApi);
 
+server.get('/api/UserUpdates', BookingController.getUserUpdatesApi);
+server.get('/api/UserUpdates/id/:id', BookingController.getUserUpdateApi);
+server.post('/api/UserUpdates/create', BookingController.postCreateUserUpdateApi);
+server.post('/api/UserUpdates/update/:id', BookingController.postUpdateUserUpdateApi);
+server.post('/api/UserUpdates/delete/:id', BookingController.postDeleteUserUpdateApi);
 
 server.get('/api/places', PlaceController.getPlacesApi);
 server.get('/api/places/id/:id', PlaceController.getPlaceApi);
@@ -121,8 +130,3 @@ server.post('/api/places/create', PlaceController.postCreatePlaceApi);
 server.post('/api/places/update/:id', PlaceController.postUpdatePlaceApi);
 server.post('/api/places/delete/:id', PlaceController.postDeletePlaceApi);
 
-server.get('/api/bookings', BookingController.getBookingsApi);
-server.get('/api/bookings/id/:id', BookingController.getBookingApi);
-server.post('/api/bookings/create', BookingController.postCreateBookingApi);
-server.post('/api/bookings/update/:id', BookingController.postUpdateBookingApi);
-server.post('/api/bookings/delete/:id', BookingController.postDeleteBookingApi);
