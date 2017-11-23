@@ -17,11 +17,8 @@ import HandlebarsConfig from "./helpers/HandlebarsConfig";
 // Récupération des controllers
 import SeedDbController from "./controllers/SeedDbController";
 import HomeController from "./controllers/HomeController";
-import ShowController from "./controllers/ShowController";
-import BookingController from "./controllers/BookingController";
 import PlaceController from "./controllers/PlaceController";
-import SeedDbControllerPlaces from "./controllers/SeedDbController";
-import UserController from "./controllers/UserController";
+import UserUpdateController from "./controllers/UserUpdateController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -66,26 +63,8 @@ mongoose.connect('mongodb://' + process.env.DB_USERNAME + ':' + process.env.DB_P
 // Routes pour initialiser la base
 server.post('/seeddb', SeedDbController.seedDb);
 
-server.post('/seeddb', SeedDbControllerPlaces.seedDb);
-
 // Routes pour les vues
 server.get('/', HomeController.getIndex);
-
-server.get('/shows', ShowController.getShows);
-server.get('/shows/id/:id', ShowController.getShow);
-server.get('/shows/create', ShowController.getCreateShow);
-server.post('/shows/create', ShowController.postCreateShow);
-server.get('/shows/update/:id', ShowController.getUpdateShow);
-server.post('/shows/update/:id', ShowController.postUpdateShow);
-server.get('/shows/delete/:id', ShowController.getDeleteShow);
-
-server.get('/bookings', BookingController.getBookings);
-server.get('/bookings/id/:id', BookingController.getBooking);
-server.get('/bookings/create', BookingController.getCreateBooking);
-server.post('/bookings/create', BookingController.postCreateBooking);
-server.get('/bookings/update/:id', BookingController.getUpdateBooking);
-server.post('/bookings/update/:id', BookingController.postUpdateBooking);
-server.get('/bookings/delete/:id', BookingController.getDeleteBooking);
 
 server.get('/places', PlaceController.getPlaces);
 server.get('/places/id/:id', PlaceController.getPlace);
@@ -95,34 +74,17 @@ server.get('/places/update/:id', PlaceController.getUpdatePlace);
 server.post('/places/update/:id', PlaceController.postUpdatePlace);
 server.get('/places/delete/:id', PlaceController.getDeletePlace);
 
-server.get('/UserUpdates', UserController.getUserUpdates);
-server.get('/UserUpdates/id/:id', UserController.getUserUpdate);
-server.get('/UserUpdates/create', UserController.getCreateUserUpdate);
-server.post('/UserUpdates/create', UserController.postCreateUserUpdate);
-server.get('/UserUpdates/update/:id', UserController.getUpdateUserUpdate);
-server.post('/UserUpdates/update/:id', UserController.postUpdateUserUpdate);
-server.get('/UserUpdates/delete/:id', UserController.getDeleteUserUpdate);
+// Pas de majuscules dans les URLs ;)
+server.get('/userupdates', UserUpdateController.getUserUpdates);
+server.get('/userupdates/id/:id', UserUpdateController.getUserUpdate);
+server.get('/userupdates/create', UserUpdateController.getCreateUserUpdate);
+server.post('/userupdates/create', UserUpdateController.postCreateUserUpdate);
+server.get('/userupdates/update/:id', UserUpdateController.getUpdateUserUpdate);
+server.post('/userupdates/update/:id', UserUpdateController.postUpdateUserUpdate);
+server.get('/userupdates/delete/:id', UserUpdateController.getDeleteUserUpdate);
 
 // Routes pour les APIs
 server.get('/api/', HomeController.getIndexApi);
-
-server.get('/api/shows', ShowController.getShowsApi);
-server.get('/api/shows/id/:id', ShowController.getShowApi);
-server.post('/api/shows/create', ShowController.postCreateShowApi);
-server.post('/api/shows/update/:id', ShowController.postUpdateShowApi);
-server.post('/api/shows/delete/:id', ShowController.postDeleteShowApi);
-
-server.get('/api/bookings', BookingController.getBookingsApi);
-server.get('/api/bookings/id/:id', BookingController.getBookingApi);
-server.post('/api/bookings/create', BookingController.postCreateBookingApi);
-server.post('/api/bookings/update/:id', BookingController.postUpdateBookingApi);
-server.post('/api/bookings/delete/:id', BookingController.postDeleteBookingApi);
-
-server.get('/api/UserUpdates', UserController.getUserUpdatesApi);
-server.get('/api/UserUpdates/id/:id', UserController.getUserUpdateApi);
-server.post('/api/UserUpdates/create', UserController.postCreateUserUpdateApi);
-server.post('/api/UserUpdates/update/:id', UserController.postUpdateUserUpdateApi);
-server.post('/api/UserUpdates/delete/:id', UserController.postDeleteUserUpdateApi);
 
 server.get('/api/places', PlaceController.getPlacesApi);
 server.get('/api/places/id/:id', PlaceController.getPlaceApi);
@@ -130,3 +92,8 @@ server.post('/api/places/create', PlaceController.postCreatePlaceApi);
 server.post('/api/places/update/:id', PlaceController.postUpdatePlaceApi);
 server.post('/api/places/delete/:id', PlaceController.postDeletePlaceApi);
 
+server.get('/api/userupdates', UserUpdateController.getUserUpdatesApi);
+server.get('/api/userupdates/id/:id', UserUpdateController.getUserUpdateApi);
+server.post('/api/userupdates/create', UserUpdateController.postCreateUserUpdateApi);
+server.post('/api/userupdates/update/:id', UserUpdateController.postUpdateUserUpdateApi);
+server.post('/api/userupdates/delete/:id', UserUpdateController.postDeleteUserUpdateApi);

@@ -6,18 +6,19 @@
    <th>idPlace</th>
    <th>duration</th>
    <th>creation</th>
+   <th>actions</th>
  </thead>
 
   {{#list UserUpdates}}
 
   <tr>
     <td>
-      <a class="btn btn-secondary btn-sm" href="/UserUpdates/id/{{id}}" role="button">
+      <a class="btn btn-secondary btn-sm" href="/userupdates/id/{{id}}" role="button">
         {{username}}
       </a>
     </td>
     <td>
-      {{IdPlace}}
+      {{idPlace}}
     </td>
     <td>
       {{duration}}
@@ -26,10 +27,10 @@
       {{creation}}
     </td>
     <td>
-      <a class="btn btn-outline-secondary btn-sm" href="/UserUpdates/update/{{id}}" role="button">
+      <a class="btn btn-outline-secondary btn-sm" href="/userupdates/update/{{id}}" role="button">
         Update
       </a>
-      <a class="btn btn-outline-danger btn-sm" href="/UserUpdates/delete/{{id}}" role="button">
+      <a class="btn btn-outline-danger btn-sm" href="/userupdates/delete/{{id}}" role="button">
         Delete
       </a>
     </td>
@@ -39,7 +40,7 @@
 </table>
 
 <div class="text-center">
-  <a class="btn btn-primary" href="/UserUpdates/create" role="button">
+  <a class="btn btn-primary" href="/userupdates/create" role="button">
     Add a UserUpdate
   </a>
 </div>

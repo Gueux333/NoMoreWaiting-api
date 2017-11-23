@@ -1,28 +1,28 @@
-<h1>Create UserUpdate</h1>
+<h1>Update UserUpdate</h1>
 
-<form action="/UserUpdates/create" method="post">
+<form action="/userupdates/update/{{UserUpdate.id}}" method="post">
   <div class="form-group">
     <label for="username">Username*</label>
-    <input class="form-control" type="text" id="username" name="username" placeholder="Nom" required>
+    <input value="{{UserUpdate.username}}" class="form-control" type="text" id="username" name="username" placeholder="Nom" required>
   </div>
 
   <div class="form-group">
     <label for="idPlace">Place*</label>
     <select class="form-control" id="idPlace" name="idPlace" required>
       {{#list places}}
-      <option value={{id}}>{{name}}</option>
+      <option value="{{id}}" {{selected ../UserUpdate.idPlace id}}>{{name}}</option>
       {{/list}}
     </select>
   </div>
 
   <div class="form-group">
     <label for="duration">Duration*</label>
-    <input class="form-control" type="number" id="duration" name="duration" placeholder="Durée en min" required>
+    <input value="{{UserUpdate.duration}}" class="form-control" type="number" id="duration" name="duration" placeholder="Durée en min" required>
   </div>
 
   <div class="text-center">
     <button type="submit" class="btn btn-primary">
-      Create
+      Update
     </button>
   </div>
 </form>

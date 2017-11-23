@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 let Schema = new mongoose.Schema({
   idPlace: {type: String},
-  userName: {type: String},
+  username: {type: String},
   duration: {type: Number},       // Derniere estimation 
   creation: {type: Date}
 });
@@ -24,7 +24,7 @@ export default {
   createUserUpdate: (UserUpdate) => {
     return Model.create({
       idPlace: UserUpdate.idPlace,
-      userName: UserUpdate.userName,
+      username: UserUpdate.username,
       duration: UserUpdate.duration,   // Derniere estimation 
       creation: new Date(),
     });
@@ -33,7 +33,7 @@ export default {
   updateUserUpdate: (_id, UserUpdate) => {
     return Model.findOneAndUpdate({ _id }, {
       idPlace: UserUpdate.idPlace,
-      userName: UserUpdate.userName,
+      username: UserUpdate.username,
       duration: UserUpdate.duration,   // Derniere estimation 
       creation: new Date(),
     }, {upsert: true}).exec();

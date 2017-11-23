@@ -1,19 +1,18 @@
-// Controller de la route '/shows'
 import Errors from "../helpers/Errors";
 
 // Récupération du model
-import ShowModel from "../models/ShowModel";
-import BookingModel from "../models/BookingModel";
+import PlaceModel from "../models/PlaceModel";
+import UserUpdateModel from "../models/UserUpdateModel";
 
 export default {
   seedDb: (req, res) => {
     return Promise.all([
-      ShowModel.deleteShows(),
-      BookingModel.deleteBookings(),
+      PlaceModel.deletePlaces(),
+      UserUpdateModel.deleteUserUpdates(),
     ])
     .then((data) => {
       return Promise.all([
-        ShowModel.seedShows(),
+        PlaceModel.seedPlaces(),
       ]);
     })
     .then((data) => {

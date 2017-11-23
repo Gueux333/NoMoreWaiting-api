@@ -4,7 +4,7 @@ import Errors from "../helpers/Errors";
 
 // Récupération du model
 import UserUpdateModel from "../models/UserUpdateModel";
-import PlaceModel from "../models/placeModel";
+import PlaceModel from "../models/PlaceModel";
 
 const UserUpdates = () => {
   return UserUpdateModel.getUserUpdates()
@@ -16,14 +16,14 @@ const UserUpdates = () => {
     let response = [];
     for (let UserUpdate of data){
       response[response.length] = {
-        //id: UserUpdate._id,
+        id: UserUpdate._id,
         idPlace: UserUpdate.idPlace,
-        userName: UserUpdate.userName,
+        username: UserUpdate.username,
         duration: UserUpdate.duration,
         creation: UserUpdate.creation,
       }
     }
-    return _.sortBy(response, 'userName');
+    return _.sortBy(response, 'username');
   });
 }
 
@@ -37,7 +37,7 @@ const UserUpdate = (_id) => {
     let response = {
       id: data._id,
       idPlace: data.idPlace,
-      userName: data.userName,
+      username: data.username,
       duration: data.duration,
       creation: data.creation,
     };
@@ -62,7 +62,7 @@ export default {
   getUserUpdates: (req, res) => {
     UserUpdates()
     .then((data) => {
-      res.render('UserUpdate/UserUpdates', { UserUpdates: data });
+      res.render('UserUpdate/userUpdates', { UserUpdates: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -72,7 +72,7 @@ export default {
   getUserUpdate: (req, res) => {
     UserUpdate(req.params.id)
     .then((data) => {
-      res.render('UserUpdate/UserUpdate', { UserUpdate: data });
+      res.render('UserUpdate/userUpdate', { UserUpdate: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -91,14 +91,14 @@ export default {
 
   postCreateUserUpdate: (req, res) => {
     let UserUpdate = {
+      username: req.body.username,
       idPlace: req.body.idPlace,
       duration: req.body.duration,
-      creation: req.body.creation,
     };
 
     createUserUpdate(UserUpdate)
     .then((data) => {
-      res.redirect('/UserUpdates');
+      res.redirect('/userupdates');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -120,14 +120,14 @@ export default {
 
   postUpdateUserUpdate: (req, res) => {
     let UserUpdate = {
+      username: req.body.username,
       idPlace: req.body.idPlace,
       duration: req.body.duration,
-      creation: req.body.creation,
     };
 
     updateUserUpdate(req.params.id, UserUpdate)
     .then((data) => {
-      res.redirect('/UserUpdates');
+      res.redirect('/userupdates');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -137,7 +137,7 @@ export default {
   getDeleteUserUpdate: (req, res) => {
     deleteUserUpdate(req.params.id)
     .then((data) => {
-      res.redirect('/UserUpdates');
+      res.redirect('/userupdates');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -167,9 +167,9 @@ export default {
 
   postCreateUserUpdateApi: (req, res) => {
     let UserUpdate = {
+      username: req.body.username,
       idPlace: req.body.idPlace,
       duration: req.body.duration,
-      creation: req.body.creation,
     };
 
     createUserUpdate(UserUpdate)
@@ -183,9 +183,9 @@ export default {
 
   postUpdateUserUpdateApi: (req, res) => {
     let UserUpdate = {
+      username: req.body.username,
       idPlace: req.body.idPlace,
       duration: req.body.duration,
-      creation: req.body.creation,
     };
 
     updateUserUpdate(req.params.id, UserUpdate)

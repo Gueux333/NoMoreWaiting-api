@@ -1,25 +1,25 @@
 // Liste des erreurs que l'API peut renvoyer
 
 const list = {
-  noShowsError: {
+  noPlacesError: {
     code: 500,
-    error: 'noShowsError',
-    error_description: 'La base ne contient pas de show'
+    error: 'noPlacesError',
+    error_description: 'La base ne contient pas de place'
   },
-  noShowError: {
+  noPlaceError: {
     code: 500,
-    error: 'noShowError',
-    error_description: 'Ce show n\'existe pas'
+    error: 'noPlaceError',
+    error_description: 'Cette place n\'existe pas'
   },
-  noBookingsError: {
+  noUserUpdatesError: {
     code: 500,
-    error: 'noBookingsError',
-    error_description: 'La base ne contient pas de booking'
+    error: 'noUserUpdatesError',
+    error_description: 'La base ne contient pas de UserUpdate'
   },
-  noBookingError: {
+  noUserUpdateError: {
     code: 500,
-    error: 'noBookingError',
-    error_description: 'Ce booking n\'existe pas'
+    error: 'noUserUpdateError',
+    error_description: 'Ce UserUpdate n\'existe pas'
   },
 };
 
