@@ -7,7 +7,7 @@ import UserModel from "../models/UserModel";
 import PlaceModel from "../models/placeModel";
 
 const UserUpdates = () => {
-  return UserUpdateModel.getUserUpdates()
+  return UserModel.getUserUpdates()
   .then((data) => {
     if (data === null) {
       throw new Error('noUserUpdatesError');
@@ -28,7 +28,7 @@ const UserUpdates = () => {
 }
 
 const UserUpdate = (_id) => {
-  return UserUpdateModel.getUserUpdate(_id)
+  return UserModel.getUserUpdate(_id)
   .then((data) => {
     if (data === null) {
       throw new Error('noUserUpdateError');
@@ -46,15 +46,15 @@ const UserUpdate = (_id) => {
 }
 
 const createUserUpdate = (UserUpdate) => {
-  return UserUpdateModel.createUserUpdate(UserUpdate);
+  return UserModel.createUserUpdate(UserUpdate);
 }
 
 const updateUserUpdate = (id, UserUpdate) => {
-  return UserUpdateModel.updateUserUpdate(id, UserUpdate);
+  return UserModel.updateUserUpdate(id, UserUpdate);
 }
 
 const deleteUserUpdate = (id) => {
-  return UserUpdateModel.deleteUserUpdate(id);
+  return UserModel.deleteUserUpdate(id);
 }
 
 export default {
