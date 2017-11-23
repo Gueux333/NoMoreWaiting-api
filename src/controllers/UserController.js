@@ -3,11 +3,11 @@ import _ from "lodash";
 import Errors from "../helpers/Errors";
 
 // Récupération du model
-import UserModel from "../models/UserModel";
+import UserUpdateModel from "../models/UserUpdateModel";
 import PlaceModel from "../models/placeModel";
 
 const UserUpdates = () => {
-  return UserModel.getUserUpdates()
+  return UserUpdateModel.getUserUpdates()
   .then((data) => {
     if (data === null) {
       throw new Error('noUserUpdatesError');
@@ -28,7 +28,7 @@ const UserUpdates = () => {
 }
 
 const UserUpdate = (_id) => {
-  return UserModel.getUserUpdate(_id)
+  return UserUpdateModel.getUserUpdate(_id)
   .then((data) => {
     if (data === null) {
       throw new Error('noUserUpdateError');
@@ -46,15 +46,15 @@ const UserUpdate = (_id) => {
 }
 
 const createUserUpdate = (UserUpdate) => {
-  return UserModel.createUserUpdate(UserUpdate);
+  return UserUpdateModel.createUserUpdate(UserUpdate);
 }
 
 const updateUserUpdate = (id, UserUpdate) => {
-  return UserModel.updateUserUpdate(id, UserUpdate);
+  return UserUpdateModel.updateUserUpdate(id, UserUpdate);
 }
 
 const deleteUserUpdate = (id) => {
-  return UserModel.deleteUserUpdate(id);
+  return UserUpdateModel.deleteUserUpdate(id);
 }
 
 export default {
