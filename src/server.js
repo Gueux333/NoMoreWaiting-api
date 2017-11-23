@@ -118,11 +118,11 @@ server.post('/api/bookings/create', BookingController.postCreateBookingApi);
 server.post('/api/bookings/update/:id', BookingController.postUpdateBookingApi);
 server.post('/api/bookings/delete/:id', BookingController.postDeleteBookingApi);
 
-server.get('/api/UserUpdates', BookingController.getUserUpdatesApi);
-server.get('/api/UserUpdates/id/:id', BookingController.getUserUpdateApi);
-server.post('/api/UserUpdates/create', BookingController.postCreateUserUpdateApi);
-server.post('/api/UserUpdates/update/:id', BookingController.postUpdateUserUpdateApi);
-server.post('/api/UserUpdates/delete/:id', BookingController.postDeleteUserUpdateApi);
+server.get('/api/UserUpdates', UserController.getUserUpdatesApi);
+server.get('/api/UserUpdates/id/:id', UserController.getUserUpdateApi);
+server.post('/api/UserUpdates/create', UserController.postCreateUserUpdateApi);
+server.post('/api/UserUpdates/update/:id', UserController.postUpdateUserUpdateApi);
+server.post('/api/UserUpdates/delete/:id', UserController.postDeleteUserUpdateApi);
 
 server.get('/api/places', PlaceController.getPlacesApi);
 server.get('/api/places/id/:id', PlaceController.getPlaceApi);

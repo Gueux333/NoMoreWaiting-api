@@ -35,7 +35,7 @@ const UserUpdate = (_id) => {
     }
 
     let response = {
-      //id: data._id,
+      id: data._id,
       idPlace: data.idPlace,
       userName: data.userName,
       duration: data.duration,
