@@ -19,6 +19,7 @@ import SeedDbController from "./controllers/SeedDbController";
 import HomeController from "./controllers/HomeController";
 import PlaceController from "./controllers/PlaceController";
 import UserUpdateController from "./controllers/UserUpdateController";
+import AroundController from "./controllers/AroundController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -83,6 +84,15 @@ server.get('/userupdates/update/:id', UserUpdateController.getUpdateUserUpdate);
 server.post('/userupdates/update/:id', UserUpdateController.postUpdateUserUpdate);
 server.get('/userupdates/delete/:id', UserUpdateController.getDeleteUserUpdate);
 
+// Nouvelle route 
+server.get('/arounds', AroundController.getArounds);
+server.get('/arounds/id/:id', AroundController.getAround);
+server.get('/arounds/create', AroundController.getCreateAround);
+server.post('/arounds/create', AroundController.postCreateAround);
+server.get('/arounds/update/:id', AroundController.getUpdateAround);
+server.post('/arounds/update/:id', AroundController.postUpdateAround);
+server.get('/arounds/delete/:id', AroundController.getDeleteAround);
+
 // Routes pour les APIs
 server.get('/api/', HomeController.getIndexApi);
 
@@ -97,3 +107,9 @@ server.get('/api/userupdates/id/:id', UserUpdateController.getUserUpdateApi);
 server.post('/api/userupdates/create', UserUpdateController.postCreateUserUpdateApi);
 server.post('/api/userupdates/update/:id', UserUpdateController.postUpdateUserUpdateApi);
 server.post('/api/userupdates/delete/:id', UserUpdateController.postDeleteUserUpdateApi);
+
+server.get('/api/arounds', AroundController.getAroundsApi);
+server.get('/api/arounds/id/:id', AroundController.getAroundApi);
+server.post('/api/arounds/create', AroundController.postCreateAroundApi);
+server.post('/api/arounds/update/:id', AroundController.postUpdateAroundApi);
+server.post('/api/arounds/delete/:id', AroundController.postDeleteAroundApi);

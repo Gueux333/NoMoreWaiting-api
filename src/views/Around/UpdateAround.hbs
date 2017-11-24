@@ -1,0 +1,19 @@
+<h1>Update Around</h1>
+
+<form action="/arounds/update/{{Around.id}}" method="post">
+  <div class="form-group">
+    <label for="idPlace">idPlace*</label>
+    <input value="{{Around.idPlace}}" class="form-control" type="text" id="idPlace" name="idPlace" placeholder="Nom" required>
+  </div>
+
+  <div class="form-group">
+    <label for="distance">Distance*</label>
+    <input value="{{Around.distance}}" class="form-control" type="number" id="distance" name="distance" placeholder="Durée en min" required>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      Update
+    </button>
+  </div>
+</form>
