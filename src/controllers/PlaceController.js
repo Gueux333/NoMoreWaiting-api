@@ -37,6 +37,40 @@ const places = () => {
   });
 }
 
+const placesAround = (mylat, mylng) => {
+  // On fait appel à la fonction getplaces du model
+  // Celle ci renvoie tous les places présents en base
+  return PlaceModel.getPlaces()
+  .then((data) => {
+    // On récupère ici data qui est une liste de places
+
+    if (data === null) {
+      // Si data est vide, nous renvoyons l'erreur 'noplacesError'
+      throw new Error('noPlacesError');
+    }
+
+    // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
+    let response = [];
+    for (let place of data){
+      // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
+      response[response.length] = {
+        id: place._id,
+        name: place.name,
+        description: place.description,
+        lat: place.lat,
+        lng: place.lng,
+        image: place.image,
+        time: place.time,
+        // Mettre ici le résultat du calcul entre (mylat, mylng) et (place.lat, place.lng)
+        distance: 0,
+      }
+    }
+
+    // Avant d'envoyer la réponse on la tri par ordre alphabétique croissant sur le champs name
+    return _.sortBy(response, 'distance');
+  });
+}
+
 const place = (_id) => {
   // On fait appel à la fonction getplace du model
   // Celle ci renvoie le place dont l'id est _id
@@ -85,6 +119,17 @@ export default {
   // Controller des views
   getPlaces: (req, res) => {
     places()
+    .then((data) => {
+      // data contient une liste de places
+      res.render('place/places', { places: data });
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getPlacesAround: (req, res) => {
+    placesAround(req.params.mylat, req.params.mylng)
     .then((data) => {
       // data contient une liste de places
       res.render('place/places', { places: data });
@@ -171,6 +216,19 @@ export default {
   // Controller des Apis
   getPlacesApi: (req, res) => {
     places()
+    .then((data) => {
+      // data contient maintenant la valeur retournée par la fonction _.sortBy
+      // Si les opérations précédentes se sont bien passées, l'api renvoie une liste de places
+      res.send(data);
+    }, (err) => {
+      // Si une erreur a été renvoyée avec la fonctions throw new Error(), nous atterrissons ici
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getPlacesAroundApi: (req, res) => {
+    placesAround(req.params.mylat, req.params.mylng)
     .then((data) => {
       // data contient maintenant la valeur retournée par la fonction _.sortBy
       // Si les opérations précédentes se sont bien passées, l'api renvoie une liste de places

@@ -68,6 +68,7 @@ server.post('/seeddb', SeedDbController.seedDb);
 server.get('/', HomeController.getIndex);
 
 server.get('/places', PlaceController.getPlaces);
+server.get('/places/around/:mylat/:mylng', PlaceController.getPlacesAround);
 server.get('/places/id/:id', PlaceController.getPlace);
 server.get('/places/create', PlaceController.getCreatePlace);
 server.post('/places/create', PlaceController.postCreatePlace);
@@ -97,6 +98,7 @@ server.get('/arounds/delete/:id', AroundController.getDeleteAround);
 server.get('/api/', HomeController.getIndexApi);
 
 server.get('/api/places', PlaceController.getPlacesApi);
+server.get('/api/places/around/:mylat/:mylng', PlaceController.getPlacesAroundApi);
 server.get('/api/places/id/:id', PlaceController.getPlaceApi);
 server.post('/api/places/create', PlaceController.postCreatePlaceApi);
 server.post('/api/places/update/:id', PlaceController.postUpdatePlaceApi);
