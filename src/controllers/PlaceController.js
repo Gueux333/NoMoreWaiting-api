@@ -49,6 +49,10 @@ const placesAround = (mylat, mylng) => {
       throw new Error('noPlacesError');
     }
 
+    // Introduction de certaine variable pour le calcule des distances 
+    var p = 0.017453292519943295;    
+    var c = Math.cos;
+
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
     for (let place of data){
@@ -62,7 +66,9 @@ const placesAround = (mylat, mylng) => {
         image: place.image,
         time: place.time,
         // Mettre ici le résultat du calcul entre (mylat, mylng) et (place.lat, place.lng)
-        distance: 0,
+        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 + 
+          c(place.lat * p) * c(mylat * p) * 
+          (1 - c((mylng - place.lng) * p))/2)),
       }
     }
 
