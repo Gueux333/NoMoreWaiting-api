@@ -25,6 +25,7 @@ const places = () => {
         id: place._id,
         name: place.name,
         description: place.description,
+        lienInternet: place.lienInternet,
         lat: place.lat, 
         lng: place.lng,
         image: place.image,
@@ -61,6 +62,7 @@ const placesAround = (mylat, mylng) => {
         id: place._id,
         name: place.name,
         description: place.description,
+        lienInternet: place.lienInternet,
         lat: place.lat,
         lng: place.lng,
         image: place.image,
@@ -94,6 +96,7 @@ const place = (_id) => {
       id: data._id,
       name: data.name,
       description: data.description,
+      lienInternet: data.lienInternet,
       lat: data.lat, 
       lng: data.lng,
       image: data.image,
@@ -163,6 +166,7 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
+      lienInternet:req.body.lienInternet,
       lat: req.body.lat, 
       lng: req.body.lng,
       image: req.body.image,
@@ -192,6 +196,7 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
+      lienInternet: req.body.lienInternet,
       lat: req.body.lat, 
       lng: req.body.lat,
       image: req.body.image,
@@ -260,6 +265,7 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
+      lienInternet: req.body.lienInternet,
       lat: req.body.lat, 
       lng: req.body.lng,
       image: req.body.image,
@@ -279,6 +285,7 @@ export default {
     let place = {
       name: req.body.name,
       description: req.body.description,
+      lienInternet: req.body.lienInternet,
       lat: req.body.lat, 
       lng: req.body.lng,
       image: req.body.image,

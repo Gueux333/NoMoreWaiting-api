@@ -8,10 +8,11 @@ import placeSeeds from "../helpers/placeSeeds";
 let Schema = new mongoose.Schema({
   name: { type: String },         // le nom du concert
   description: { type: String },  // la description
+  lienInternet: { type: String },
   lat: { type: String },
   lng: { type: String },
   image: { type: String },        // l'url de l'image
-  time: { type: String }          // Derniere estimation
+  time: { type: String },          // Derniere estimation
 });
 
 let Model = mongoose.model('Place', Schema);
@@ -37,6 +38,7 @@ export default {
     return Model.create({
       name: place.name,
       description: place.description,
+      lienInternet: place.lienInternet,
       lat: place.lat,
       lng: place.lng,
       image: place.image,
@@ -48,6 +50,7 @@ export default {
     return Model.findOneAndUpdate({ _id }, {
       name: place.name,
       description: place.description,
+      lienInternet: place.lienInternet,
       lat: place.lat,
       lng: place.lng,
       image: place.image,
