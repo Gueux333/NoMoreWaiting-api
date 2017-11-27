@@ -4,6 +4,8 @@ import Errors from "../helpers/Errors";
 
 // Récupération du model
 import PlaceModel from "../models/PlaceModel";
+import UserUpdateModel from "../models/UserUpdateModel";
+import UserUpdateController from "../controllers/UserUpdateController"
 
 const places = () => {
   // On fait appel à la fonction getplaces du model
@@ -19,7 +21,9 @@ const places = () => {
 
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
-    for (let place of data){
+    for (let place of data){      
+
+
       // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
       response[response.length] = {
         id: place._id,
