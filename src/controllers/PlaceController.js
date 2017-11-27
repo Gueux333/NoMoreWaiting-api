@@ -31,26 +31,46 @@ const places = () => {
       // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
 
       let waitingTime = 0;
-      let index = 0;
+      let lastUpdate = new Date(0);
+      let presentTime = new Date();
+      let mostRecentEstimate = new Date(0);
+
       for (let userUpdate of data[1]){
         if (place._id == userUpdate.idPlace){
-          waitingTime += userUpdate.duration;
-          index ++;
+          if (userUpdate.creation > lastUpdate) {
+            mostRecentEstimate = userUpdate.creation.getTime() + userUpdate.duration * 60000;
+            lastUpdate = userUpdate.creation;
+          }
         }
       }
-      if (index > 0){
-        waitingTime = waitingTime / index;
+
+      if (mostRecentEstimate > presentTime){
+        waitingTime = Math.floor((mostRecentEstimate - presentTime)/60000);
       }
 
-      response[response.length] = {
-        id: place._id,
-        name: place.name,
-        description: place.description,
-        lienInternet: place.lienInternet,
-        lat: place.lat,
-        lng: place.lng,
-        image: place.image,
-        time: waitingTime,
+      if (waitingTime == 0){
+        response[response.length] = {
+          id: place._id,
+          name: place.name,
+          description: place.description,
+          lienInternet: place.lienInternet,
+          lat: place.lat,
+          lng: place.lng,
+          image: place.image,
+          time: "Pas d'estimations pour le moment",
+        }
+      }
+      else {
+        response[response.length] = {
+          id: place._id,
+          name: place.name,
+          description: place.description,
+          lienInternet: place.lienInternet,
+          lat: place.lat,
+          lng: place.lng,
+          image: place.image,
+          time: waitingTime,
+        }
       }
     }
 
