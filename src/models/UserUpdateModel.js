@@ -7,7 +7,8 @@ let Schema = new mongoose.Schema({
   idPlace: {type: String},
   username: {type: String},
   duration: {type: Number},       // Derniere estimation 
-  creation: {type: Date}
+  creation: {type: Date},
+
 });
 
 let Model = mongoose.model('UserUpdate', Schema);
@@ -35,7 +36,7 @@ export default {
       idPlace: UserUpdate.idPlace,
       username: UserUpdate.username,
       duration: UserUpdate.duration,   // Derniere estimation 
-      creation: new Date(),
+      creation: new Date(year, month, date, hours, minutes, seconds),
     }, {upsert: true}).exec();
   },
 
