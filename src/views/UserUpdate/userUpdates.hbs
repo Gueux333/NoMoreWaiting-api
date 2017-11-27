@@ -1,0 +1,46 @@
+<h1>UserUpdates</h1>
+
+<table class="table">
+ <thead>
+   <th>Username</th>
+   <th>idPlace</th>
+   <th>duration</th>
+   <th>creation</th>
+   <th>actions</th>
+ </thead>
+
+  {{#list UserUpdates}}
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/userupdates/id/{{id}}" role="button">
+        {{username}}
+      </a>
+    </td>
+    <td>
+      {{idPlace}}
+    </td>
+    <td>
+      {{duration}}
+    </td>
+     <td>
+      {{creation}}
+    </td>
+    <td>
+      <a class="btn btn-outline-secondary btn-sm" href="/userupdates/update/{{id}}" role="button">
+        Update
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/userupdates/delete/{{id}}" role="button">
+        Delete
+      </a>
+    </td>
+  </tr>
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/userupdates/create" role="button">
+    Add a UserUpdate
+  </a>
+</div>
