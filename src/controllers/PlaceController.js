@@ -4,32 +4,53 @@ import Errors from "../helpers/Errors";
 
 // Récupération du model
 import PlaceModel from "../models/PlaceModel";
+import UserUpdateModel from "../models/UserUpdateModel";
 
 const places = () => {
   // On fait appel à la fonction getplaces du model
   // Celle ci renvoie tous les places présents en base
-  return PlaceModel.getPlaces()
+  return Promise.all([
+    PlaceModel.getPlaces(),
+    UserUpdateModel.getUserUpdates(),
+  ])
   .then((data) => {
     // On récupère ici data qui est une liste de places
 
-    if (data === null) {
+    if (data[0] === null) {
       // Si data est vide, nous renvoyons l'erreur 'noplacesError'
       throw new Error('noPlacesError');
     }
 
+    if (data[1] === null) {
+      throw new Error('noUserUpdatesError');
+    }
+
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
-    for (let place of data){
+    for (let place of data[0]){
       // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
+
+      let waitingTime = 0;
+      let index = 0;
+      for (let userUpdate of data[1]){
+        if (place._id == userUpdate.idPlace){
+          waitingTime += userUpdate.duration;
+          index ++;
+        }
+      }
+      if (index > 0){
+        waitingTime = waitingTime / index;
+      }
+
       response[response.length] = {
         id: place._id,
         name: place.name,
         description: place.description,
         lienInternet: place.lienInternet,
-        lat: place.lat, 
+        lat: place.lat,
         lng: place.lng,
         image: place.image,
-        time: place.time
+        time: waitingTime,
       }
     }
 
@@ -50,8 +71,8 @@ const placesAround = (mylat, mylng) => {
       throw new Error('noPlacesError');
     }
 
-    // Introduction de certaine variable pour le calcule des distances 
-    var p = 0.017453292519943295;    
+    // Introduction de certaine variable pour le calcule des distances
+    var p = 0.017453292519943295;
     var c = Math.cos;
     var mylat = 48.858490;
     var mylng = 2.294674;
@@ -70,8 +91,8 @@ const placesAround = (mylat, mylng) => {
         image: place.image,
         time: place.time,
         // Mettre ici le résultat du calcul entre (mylat, mylng) et (place.lat, place.lng)
-        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 + 
-          c(place.lat * p) * c(mylat * p) * 
+        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 +
+          c(place.lat * p) * c(mylat * p) *
           (1 - c((mylng - place.lng) * p))/2)),
       }
     }
@@ -100,7 +121,7 @@ const place = (_id) => {
       name: data.name,
       description: data.description,
       lienInternet: data.lienInternet,
-      lat: data.lat, 
+      lat: data.lat,
       lng: data.lng,
       image: data.image,
       time: data.time
@@ -170,7 +191,7 @@ export default {
       name: req.body.name,
       description: req.body.description,
       lienInternet:req.body.lienInternet,
-      lat: req.body.lat, 
+      lat: req.body.lat,
       lng: req.body.lng,
       image: req.body.image,
       time: req.body.time
@@ -200,7 +221,7 @@ export default {
       name: req.body.name,
       description: req.body.description,
       lienInternet: req.body.lienInternet,
-      lat: req.body.lat, 
+      lat: req.body.lat,
       lng: req.body.lat,
       image: req.body.image,
       time: req.body.time
@@ -269,7 +290,7 @@ export default {
       name: req.body.name,
       description: req.body.description,
       lienInternet: req.body.lienInternet,
-      lat: req.body.lat, 
+      lat: req.body.lat,
       lng: req.body.lng,
       image: req.body.image,
       time: req.body.time
@@ -289,7 +310,7 @@ export default {
       name: req.body.name,
       description: req.body.description,
       lienInternet: req.body.lienInternet,
-      lat: req.body.lat, 
+      lat: req.body.lat,
       lng: req.body.lng,
       image: req.body.image,
       time: req.body.time,
