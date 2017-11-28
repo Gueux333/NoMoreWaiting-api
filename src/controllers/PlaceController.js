@@ -62,7 +62,7 @@ const places = (mylat, mylng) => {
           lat: place.lat,
           lng: place.lng,
           image: place.image,
-          time: "Pas d'estimations pour le moment",
+          time: "No estimate yet",
           distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 +
           c(place.lat * p) * c(mylat * p) *
           (1 - c((mylng - place.lng) * p))/2)),
@@ -144,7 +144,7 @@ const place = (_id) => {
         lat: data[0].lat,
         lng: data[0].lng,
         image: data[0].image,
-        time: "Pas d'estimations pour le moment",
+        time: "No estimate yet",
         distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - data[0].lat) * p)/2 +
                      c(data[0].lat * p) * c(mylat * p) *
                      (1 - c((mylng - data[0].lng) * p))/2)),
