@@ -94,27 +94,78 @@ const places = (mylat, mylng) => {
 const place = (_id) => {
   // On fait appel à la fonction getplace du model
   // Celle ci renvoie le place dont l'id est _id
-  return PlaceModel.getPlace(_id)
+  var p = 0.017453292519943295;
+   var c = Math.cos;
+   var mylat = 48.714460;
+   var mylng = 2.211270;
+  return Promise.all([
+    PlaceModel.getPlace(_id),
+    UserUpdateModel.getUserUpdates(),
+  ])
   .then((data) => {
     // On récupère ici data qui est une liste de places
 
-    if (data === null) {
+    if (data[0] === null) {
       // Si data est vide, nous renvoyons l'erreur 'noplaceError'
       throw new Error('noPlaceError');
     }
 
+    if (data[1] === null) {
+      throw new Error('noUserUpdatesError');
+    }
+
+    let waitingTime = 0;
+    let lastUpdate = new Date(0);
+    let presentTime = new Date();
+    let mostRecentEstimate = new Date(0);
+
+    for (let userUpdate of data[1]){
+      if (data[0]._id == userUpdate.idPlace){
+        if (userUpdate.creation > lastUpdate) {
+          mostRecentEstimate = userUpdate.creation.getTime() + userUpdate.duration * 60000;
+          lastUpdate = userUpdate.creation;
+        }
+      }
+    }
+
+    if (mostRecentEstimate > presentTime){
+      waitingTime = Math.floor((mostRecentEstimate - presentTime)/60000);
+    }
+
+
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un élement
-    let response = {
-      id: data._id,
-      name: data.name,
-      description: data.description,
-      lienInternet: data.lienInternet,
-      lat: data.lat,
-      lng: data.lng,
-      image: data.image,
-      time: data.time
-    };
-    return response;
+    let response = {};
+    if (waitingTime == 0){
+      response = {
+        id: data[0]._id,
+        name: data[0].name,
+        description: data[0].description,
+        lienInternet: data[0].lienInternet,
+        lat: data[0].lat,
+        lng: data[0].lng,
+        image: data[0].image,
+        time: "Pas d'estimations pour le moment",
+        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - data[0].lat) * p)/2 +
+                     c(data[0].lat * p) * c(mylat * p) *
+                     (1 - c((mylng - data[0].lng) * p))/2)),
+      }
+    }
+    else {
+      response = {
+        id: data[0]._id,
+        name: data[0].name,
+        description: data[0].description,
+        lienInternet: data[0].lienInternet,
+        lat: data[0].lat,
+        lng: data[0].lng,
+        image: data[0].image,
+        time: waitingTime,
+        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - data[0].lat) * p)/2 +
+                     c(data[0].lat * p) * c(mylat * p) *
+                     (1 - c((mylng - data[0].lng) * p))/2)),
+      }
+    }
+      return response;
   });
 }
 
