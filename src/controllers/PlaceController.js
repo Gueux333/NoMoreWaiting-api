@@ -6,9 +6,14 @@ import Errors from "../helpers/Errors";
 import PlaceModel from "../models/PlaceModel";
 import UserUpdateModel from "../models/UserUpdateModel";
 
-const places = () => {
+const places = (mylat, mylng) => {
   // On fait appel à la fonction getplaces du model
   // Celle ci renvoie tous les places présents en base
+
+   var p = 0.017453292519943295;
+   var c = Math.cos;
+   var mylat = 48.714460
+   var mylng = 2.211270
   return Promise.all([
     PlaceModel.getPlaces(),
     UserUpdateModel.getUserUpdates(),
@@ -58,6 +63,9 @@ const places = () => {
           lng: place.lng,
           image: place.image,
           time: "Pas d'estimations pour le moment",
+          distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 +
+          c(place.lat * p) * c(mylat * p) *
+          (1 - c((mylng - place.lng) * p))/2)),
         }
       }
       else {
@@ -70,57 +78,18 @@ const places = () => {
           lng: place.lng,
           image: place.image,
           time: waitingTime,
+          distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 +
+                     c(place.lat * p) * c(mylat * p) *
+                     (1 - c((mylng - place.lng) * p))/2)),
         }
       }
     }
 
     // Avant d'envoyer la réponse on la tri par ordre alphabétique croissant sur le champs name
-    return _.sortBy(response, 'name');
-  });
-}
-
-const placesAround = (mylat, mylng) => {
-  // On fait appel à la fonction getplaces du model
-  // Celle ci renvoie tous les places présents en base
-  return PlaceModel.getPlaces()
-  .then((data) => {
-    // On récupère ici data qui est une liste de places
-
-    if (data === null) {
-      // Si data est vide, nous renvoyons l'erreur 'noplacesError'
-      throw new Error('noPlacesError');
-    }
-
-    // Introduction de certaine variable pour le calcule des distances
-    var p = 0.017453292519943295;
-    var c = Math.cos;
-    
-
-    // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
-    let response = [];
-    for (let place of data){
-      // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
-      response[response.length] = {
-        id: place._id,
-        name: place.name,
-        description: place.description,
-        lienInternet: place.lienInternet,
-        lat: place.lat,
-        lng: place.lng,
-        image: place.image,
-        time: place.time,
-        // Mettre ici le résultat du calcul entre (mylat, mylng) et (place.lat, place.lng)
-        distance: 12742 * Math.asin(Math.sqrt(0.5 - c((mylat - place.lat) * p)/2 +
-          c(place.lat * p) * c(mylat * p) *
-          (1 - c((mylng - place.lng) * p))/2)),
-      }
-    }
-
-    // Avant d'envoyer la réponse on la tri par ordre alphabétique croissant sur le champs name
     return _.sortBy(response, 'distance');
-    //return distance.sort(function(a, b){return a-b});
   });
 }
+
 
 const place = (_id) => {
   // On fait appel à la fonction getplace du model
