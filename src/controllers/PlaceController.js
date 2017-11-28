@@ -12,8 +12,8 @@ const places = (mylat, mylng) => {
 
    var p = 0.017453292519943295;
    var c = Math.cos;
-   var mylat = 48.714460
-   var mylng = 2.211270
+   //var mylat = 48.714460
+   //var mylng = 2.211270
   return Promise.all([
     PlaceModel.getPlaces(),
     UserUpdateModel.getUserUpdates(),
