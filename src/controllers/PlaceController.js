@@ -74,8 +74,7 @@ const placesAround = (mylat, mylng) => {
     // Introduction de certaine variable pour le calcule des distances
     var p = 0.017453292519943295;
     var c = Math.cos;
-    var mylat = 48.858490;
-    var mylng = 2.294674;
+    
 
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
